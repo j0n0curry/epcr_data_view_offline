@@ -325,3 +325,47 @@ heat_map(select, 'norm_N_Cov', plate_choice)
 st.table(stats_nFAM[stats_nFAM['Run_ID'] == plate_choice])
 heat_map(select, 'norm_RNaseP', plate_choice)
 st.table(stats_nCFO[stats_nCFO['Run_ID'] == plate_choice])
+
+
+
+@st.cache
+def convert_df(df):
+     # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
+ROX = convert_df(stats_ROX)
+FAM = convert_df(stats_FAM)
+CFO = convert_df(stats_CFO)
+nFAM = convert_df(stats_nFAM)
+nCFO = convert_df(stats_nCFO)
+
+
+st.sidebar.download_button(
+     label="Download ROX data as CSV",
+     data=ROX,
+     file_name='ROX.csv',
+     mime='text/csv',)
+
+st.sidebar.download_button(
+     label="Download FAM data as CSV",
+     data=FAM,
+     file_name='FAM.csv',
+     mime='text/csv',)
+
+st.sidebar.download_button(
+     label="Download CFO data as CSV",
+     data=CFO,
+     file_name='CFO.csv',
+     mime='text/csv',)
+
+st.sidebar.download_button(
+     label="Download nFAM data as CSV",
+     data=nFAM,
+     file_name='nFAM.csv',
+     mime='text/csv',)
+
+st.sidebar.download_button(
+     label="Download nCFO data as CSV",
+     data=nCFO,
+     file_name='nCFO.csv',
+     mime='text/csv',)
