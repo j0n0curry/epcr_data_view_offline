@@ -251,7 +251,6 @@ figN1.add_trace(go.Scatter(
     mode="lines+markers+text",
     name="Lower_10_Positive_Boundary",
     text=["10"],
-    #text=["ROX 1600 lower cutoff"],
     textposition="top center",
     line=dict(color="red")
 ))
@@ -267,7 +266,6 @@ figN1.add_trace(go.Scatter(
      textposition="top center"))
 
 
-
 figN1.update_xaxes(showgrid = True, gridwidth = 0.0002, gridcolor = 'grey')
 figN1.update_yaxes(range=[0, 20],showgrid = True, gridwidth = 0.0002, gridcolor = 'grey')
 
@@ -280,7 +278,7 @@ figN1.update_yaxes(range=[0, 20],showgrid = True, gridwidth = 0.0002, gridcolor 
 # Plot!
 
 
-st.subheader('Individual array data - investigate data array by array')
+st.subheader('All processing data view')
 
 col1, col2 = st.columns(2)
 
@@ -312,7 +310,8 @@ def heat_map(df1, dye_choice, plate_choice):
     fig.update_yaxes(autorange="reversed")
     st.plotly_chart(fig, use_container_width=True)
     
-st.subheader('Process')
+
+st.subheader('Individual array data - investigate data array by array')
 
 plate = comp['Run_ID'].unique()
 plate_choice = st.sidebar.selectbox('Select plate to analyse:', plate)
